@@ -31,10 +31,17 @@ class App extends React.Component {
     this.setState({ filters: { ...this.state.filters, type: value } });
   }
 
-  onAdoptPet = (pet) => { 
-    pet.isAdopted = 'true'
+  onAdoptPet = (petId) => { 
+    let foundPet = this.state.pets.find(pet => pet.id === petId)
+    return foundPet ? foundPet.isAdopted = true : foundPet
   }
   
+  onAdoptPet = petId => {
+    const pets = this.state.pets.map(p => {
+      return p.id === petId ? { ...p, isAdopted: true } : p;
+    });
+    this.setState({ pets });
+  };
 
 
 
